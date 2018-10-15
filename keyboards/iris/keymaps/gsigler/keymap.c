@@ -8,7 +8,6 @@ enum iris_layers {
   _RAISE
 };
 
-#define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
 
