@@ -9,6 +9,7 @@ enum iris_layers {
 };
 
 #define RAISE MO(_RAISE)
+#define LOWER MO(_LOWER)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -27,11 +28,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //| SHIFT  |   Z    |   X    |   C    |    V   |    B   |   ESC  |        | ALT    |    N   |   M    |   </,  |  >/.   |  ?-/   |   |-\  |
       KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_ESC,            KC_LALT,  KC_N,    KC_M,  KC_COMM, KC_DOT,   KC_SLSH, KC_BSLS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-  //                                COMMAND | BKSPACE | SPACE |                 | SPACE  |  ENTER |  CTRL  |
-                                     KC_LGUI, KC_BSPC, KC_SPC,                    KC_SPC,  KC_ENT,  KC_LCTL
+  //                                  CTRL | COMMAND | BKSPACE |                 | SPACE  |  ENTER |  LOWER |
+                                     KC_LCTL, KC_LGUI, KC_BSPC,                    KC_SPC,  KC_ENT,  LOWER
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
-//KC_LALT  ALT
+
   [_RAISE] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
   //|  `/~   |   F1   |   F2   |   F3   |    F4  |   F5   |                          |   F6   |   F7   |   F8   |   F9   |   F10  |   F11  |
@@ -43,11 +44,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|  RAISE |    #   |    $   |   (    |   )    |    `   |                          |   ?    |    ←   |   ↓    |    →   |        |  VOLUP |
       KC_TRNS,  KC_HASH, KC_DLR, KC_LPRN, KC_RPRN,  KC_GRV,                            KC_QUES, KC_LEFT,KC_DOWN, KC_RGHT, XXXXXXX,  KC__VOLUP,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-  //| SHIFT  |    %   |    ^   |   [    |   ]    |    ~   |  ESC            | ALT  |    &   |        |        |        |  MUTE  |  VOLDN |
+  //| c  |    %   |    ^   |   [    |   ]    |    ~   |  ESC            | ALT  |    &   |        |        |        |  MUTE  |  VOLDN |
      KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,  KC_TRNS,          KC_TRNS, KC_AMPR, XXXXXXX, XXXXXXX,XXXXXXX, KC__MUTE,KC__VOLDOWN,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-  //                               |COMMAND | BKSPACE|  SPACE |                 | SPACE  |  ENTER |  CTRL  |
-                                    KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,  KC_TRNS, KC_TRNS
+  //                               |CTRL | COMMAND|  BKSPACE |                 | SPACE  |  ENTER |  LOWER  |
+                                    KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,  KC_TRNS, LOWER
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
+  [_LOWER] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+  //|        |        |        |        |        |        |                          |        |   7    |    8   |    9   |    *   |    /   |
+     KC_ASUP, KC_ASON, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,                           XXXXXXX,   KC_P7,   KC_P8,   KC_P9,  KC_PAST, KC_PSLS,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  //|        |        |        |        |        |        |                          |        |    4   |    5   |    6   |    +   |    -    |
+     KC_ASDN, KC_ASOFF, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                            XXXXXXX,  KC_P4,   KC_P5,   KC_P6,  KC_PPLS, KC_PMNS,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  //|        |        |        |        |        |        |                          |        |    1   |    2   |    3   |        |        |
+     KC_ASRP, KC_ASTG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX,  KC_P1,   KC_P2,   KC_P3,  XXXXXXX, XXXXXXX,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+  //|  SHIFT |        |        |        |        |        |  SHIFT |        | ALT|        |   0    |    .   | ENTER  |   =    |        |
+     KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_TRNS,           KC_TRNS,  XXXXXXX, KC_P0,   KC_PDOT, KC_PENT, KC_PEQL, XXXXXXX,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+  //                               |  CTRL  | COMMAND| BKSPACE  |               | SPACE|  ENTER |   LOWER  |
+                                    KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
