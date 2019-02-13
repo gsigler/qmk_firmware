@@ -47,8 +47,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|        |    %   |    ^   |   [    |   ]    |    ~   |             |    &   |    "    |  '    |    <   |    >   |        |
      XXXXXXX, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                KC_AMPR, KC_QUOT, KC_QUOT,  KC_LT,  KC_GT, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────|             ┌────────┼────────┼────────┼────────┼────────┼────────┤
-  //         |  CTRL  |   ALT  |COMMAND | SPACE  | SPACE  |               SPACE  |        |        |        |        |        |
-     XXXXXXX,  KC_TRNS, KC_TRNS,KC_TRNS,  XXXXXXX,  KC_SPC,              KC_SPC, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX
+  //         |  CTRL  |   ALT  |COMMAND | SPACE  | SPACE  |               SPACE  |  SPACE |   ←    |   ↓    |   ↑    |    →   |
+     XXXXXXX,  KC_TRNS, KC_TRNS,KC_TRNS,  KC_SPC,  KC_SPC,               KC_SPC,    KC_SPC, KC_LEFT, KC_DOWN,  KC_UP,  KC_RGHT
   //└────────┴────────┴────────┴────────┴────────┴────────┘             └────────┴────────┴────────┴────────┴────────┴────────┘
   ),
 // KC_EQUAL    KC_MINS   -  KC_UNDS  _  
